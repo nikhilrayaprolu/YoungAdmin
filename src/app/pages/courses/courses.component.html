@@ -1,0 +1,70 @@
+  <nb-card>
+    <nb-card-body>
+      hello
+      <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+
+
+    </nb-card-body>
+  </nb-card>
+  <button nbButton
+          fullWidth
+          (click)="addNewCourse = !(addNewCourse)"
+          >
+    Add New Course
+  </button>
+  <nb-card *ngIf="addNewCourse">
+    <nb-card-body>
+      <form (ngSubmit)="addCourse()" #form="ngForm" aria-labelledby="title">
+      <div class="form-control-group">
+        <label class="label" for="input-name">Name:</label>
+        <input nbInput
+               fullWidth
+               [(ngModel)]="newcourse.name"
+               #name="ngModel"
+               name="name"
+               id="input-name"
+               placeholder="Name"
+               autofocus>
+      </div>
+        <div class="form-control-group">
+          <label class="label" for="input-class-level">Class:</label>
+          <select class="form-control" id="input-class-level" required fullWidth [(ngModel)]="newsection.section_class" name="Studentclass">
+            <option *ngFor="let class of available_classes" [value]="class.id">{{class.display_name}}</option>
+          </select>
+          {{newsection?.section_class}}
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-section-name">Section Name:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="newsection.section_name"
+                 #name="ngModel"
+                 name="sectionname"
+                 id="input-section-name"
+                 placeholder="Section Name"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-section-description">Section Description:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="newsection.description"
+                 #name="ngModel"
+                 name="sectiondescription"
+                 id="input-section-description"
+                 placeholder="Section Description"
+                 autofocus>
+        </div>
+
+
+        <button nbButton
+                fullWidth
+                status="success">
+          Add Course
+        </button>
+      </form>
+
+
+
+    </nb-card-body>
+  </nb-card>

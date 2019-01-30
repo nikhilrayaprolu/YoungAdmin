@@ -8,6 +8,42 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Profile',
+    icon: 'nb-home',
+    link: '/pages/profile',
+    home: true,
+  },
+  {
+    title: 'Teachers',
+    icon: 'nb-home',
+    link: '/pages/teachers',
+    home: true,
+  },
+  {
+    title: 'Students',
+    icon: 'nb-home',
+    link: '/pages/students',
+    home: true,
+  },
+  {
+    title: 'Classes',
+    icon: 'nb-home',
+    link: '/pages/classes',
+    home: true,
+  },
+  {
+    title: 'Sections',
+    icon: 'nb-home',
+    link: '/pages/sections',
+    home: true,
+  },
+  {
+    title: 'Courses',
+    icon: 'nb-home',
+    link: '/pages/courses',
+    home: true,
+  },
+  {
     title: 'FEATURES',
     group: true,
   },
@@ -33,4 +69,5 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+
 ];

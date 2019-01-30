@@ -1,0 +1,122 @@
+  <nb-card>
+    <nb-card-body>
+      hello
+      <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+
+
+    </nb-card-body>
+  </nb-card>
+  <button nbButton
+          fullWidth
+          (click)="addNewTeacher = !(addNewTeacher)"
+          >
+    Add New Teacher
+  </button>
+  <nb-card *ngIf="addNewTeacher">
+    <nb-card-body>
+      <form (ngSubmit)="addTeacher()" #form="ngForm" aria-labelledby="title">
+      <div class="form-control-group">
+        <label class="label" for="input-name">Name:</label>
+        <input nbInput
+               fullWidth
+               [(ngModel)]="newteacher.name"
+               #name="ngModel"
+               name="name"
+               id="input-name"
+               placeholder="Name"
+               autofocus>
+      </div>
+      <div class="form-control-group">
+        <label class="label" for="input-Username">User name:</label>
+        <input nbInput
+               fullWidth
+               [(ngModel)]="newteacher.username"
+               #username="ngModel"
+               name="username"
+               id="input-username"
+               placeholder="Username"
+               autofocus>
+      </div>
+
+      <div class="form-control-group">
+        <label class="label" for="input-email">Contact Email:</label>
+        <input nbInput
+               fullWidth
+               [(ngModel)]="newteacher.email"
+               #email="ngModel"
+               name="email"
+               id="input-email"
+               placeholder="Email"
+               autofocus>
+      </div>
+        <div class="form-control-group">
+          <label class="label" for="input-password">Password:</label>
+          <input nbInput
+                 [(ngModel)]="newteacher.password"
+                 #password="ngModel"
+                 type="password"
+                 id="input-password"
+                 name="password"
+                 placeholder="Password"
+                 fullWidth>
+        </div>
+
+
+        <div class="form-control-group">
+        <label class="label" for="input-number">Contact Number:</label>
+        <input nbInput
+               fullWidth
+               [(ngModel)]="newteacher.contact_number"
+               #email="ngModel"
+               name="number"
+               id="input-number"
+               placeholder="Number"
+               autofocus>
+      </div>
+        <div class="form-control-group">
+          <label class="label" for="input-first-name">First Name:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="newteacher.first_name"
+                 #email="ngModel"
+                 name="first-name"
+                 id="input-first-name"
+                 placeholder="First Name"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-lastname">Last Name:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="newteacher.last_name"
+                 #email="ngModel"
+                 name="lastname"
+                 id="input-lastname"
+                 placeholder="Last Name"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-gender">Gender:</label>
+          <nb-select placeholder="Gender" [(selected)]="newteacher.gender" id="input-gender" outline status="primary">
+            <nb-option value="M">Male</nb-option>
+            <nb-option value="F">Female</nb-option>
+            <nb-option value="O">Others</nb-option>
+          </nb-select>
+
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-number">Birthday:</label>
+          <input [nbDatepicker]="datepicker" [(ngModel)]="newteacher.birthday" name="birthday">
+          <nb-datepicker #datepicker format="yyyy-MM-dd"></nb-datepicker>
+        </div>
+        <button nbButton
+                fullWidth
+                status="success">
+          Add Teacher
+        </button>
+      </form>
+
+
+
+    </nb-card-body>
+  </nb-card>

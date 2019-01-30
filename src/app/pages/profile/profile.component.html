@@ -1,0 +1,106 @@
+  <nb-card>
+    <nb-card-body>
+      <form (ngSubmit)="updateprofile()" #form="ngForm" aria-labelledby="title">
+        <div class="form-control-group">
+          <label class="label" for="input-schoolname">Organization:</label>
+          <input nbInput
+                 fullWidth
+                 hidden
+                 [(ngModel)]="profile.organization"
+                 #schoolname="ngModel"
+                 name="organization"
+                 id="input-organization"
+                 placeholder="Organization"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-schoolname">School name:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="profile.schoolname"
+                 #schoolname="ngModel"
+                 name="schoolname"
+                 id="input-schoolname"
+                 placeholder="Schoolname"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-principal">Principal:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="profile.principal"
+                 #principal="ngModel"
+                 name="principal"
+                 id="input-principal"
+                 placeholder="Principal"
+                 autofocus>
+        </div>
+
+        <div class="form-control-group">
+          <label class="label" for="input-email">Contact Email:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="profile.email"
+                 #email="ngModel"
+                 name="schoolemail"
+                 id="input-email"
+                 placeholder="Email"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-number">Contact Number:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="profile.contact_number"
+                 #email="ngModel"
+                 name="schoolnumber"
+                 id="input-number"
+                 placeholder="Number"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-address">Address:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="profile.address"
+                 #address="ngModel"
+                 name="schooladdress"
+                 id="input-address"
+                 placeholder="Address"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-address">Website:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="profile.website"
+                 #website="ngModel"
+                 name="website"
+                 id="input-website"
+                 placeholder="Website"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-board">Board:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="profile.board"
+                 #website="ngModel"
+                 name="board"
+                 id="input-board"
+                 placeholder="Board"
+                 autofocus>
+        </div>
+        <button nbButton
+                fullWidth
+                status="success"
+                [disabled]="submitted || !form.valid"
+                [class.btn-pulse]="submitted">
+          Update
+        </button>
+      </form>
+
+
+
+    </nb-card-body>
+  </nb-card>

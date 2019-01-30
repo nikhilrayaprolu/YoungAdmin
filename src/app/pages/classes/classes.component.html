@@ -1,0 +1,47 @@
+  <nb-card>
+    <nb-card-body>
+      hello
+      <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+
+
+    </nb-card-body>
+  </nb-card>
+  <button nbButton
+          fullWidth
+          (click)="addNewClass = !(addNewClass)"
+  >
+    Add New Class
+  </button>
+  <nb-card *ngIf="addNewClass">
+    <nb-card-body>
+      <form (ngSubmit)="addClass()" #form="ngForm" aria-labelledby="title">
+        <div class="form-control-group">
+          <label class="label" for="input-class-level">Class Level:</label>
+          <select nbInput class="form-control" id="input-class-level" required fullWidth [(ngModel)]="newclass.class_level" name="classlevel">
+            <option *ngFor="let level of class_levels" [value]="level">{{level}}</option>
+          </select>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-class-level">Display Name:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="newclass.display_name"
+                 #name="ngModel"
+                 name="displayname"
+                 id="input-display-name"
+                 placeholder="Diaplay Name"
+                 autofocus>
+        </div>
+
+        <button nbButton
+                fullWidth
+                status="success">
+          Add Class
+        </button>
+      </form>
+
+
+
+    </nb-card-body>
+  </nb-card>
+

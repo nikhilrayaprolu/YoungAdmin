@@ -7,13 +7,15 @@ import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NbAuthJWTInterceptor, NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
+import {NbStepperModule} from "@nebular/theme";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +24,41 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
     NgbModule.forRoot(),
+    NbStepperModule,
+    BrowserAnimationsModule,
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email',
+          token: {
+            class: NbAuthJWTToken,
+
+            key: 'access_token', // this parameter tells where to look for the token
+          },
+          baseEndpoint: 'http://localhost:8000',
+          login: {
+            // ...
+            endpoint: '/api/auth/login',
+            redirect: {
+              success: 'auth/success',
+              failure: null,
+            },
+          },
+          register: {
+            // ...
+            endpoint: '/api/auth/register',
+          },
+          resetPass: {
+            endpoint: '/auth/reset-pass',
+          },
+        }),
+      ],
+      forms: {},
+    }),
   ],
   bootstrap: [AppComponent],
   providers: [
