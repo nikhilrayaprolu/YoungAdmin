@@ -8,6 +8,7 @@ import {ClassService} from "../../services/class.service";
 @Component({
   selector: 'ngx-profile',
   templateUrl: './sections.component.html',
+  styleUrls: ['./sections.component.scss']
 })
 export class SectionsComponent {
   settings = {

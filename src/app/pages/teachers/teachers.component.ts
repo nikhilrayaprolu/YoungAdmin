@@ -7,9 +7,17 @@ import {LocalDataSource} from "ng2-smart-table";
 @Component({
   selector: 'ngx-profile',
   templateUrl: './teachers.component.html',
+  styleUrls: ['./teachers.component.scss']
 })
 export class TeachersComponent {
   settings = {
+    actions: {
+      add: false,
+      edit: false,
+      delete: false,
+      custom: [{ name: 'edit',type:'html', title: 'Edit' }],
+      position: 'right'
+    },
     columns: {
       email: {
         title: 'Email'

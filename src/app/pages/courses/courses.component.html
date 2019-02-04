@@ -1,7 +1,7 @@
   <nb-card>
     <nb-card-body>
-      hello
-      <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onEditRow($event)"></ng2-smart-table>
 
 
     </nb-card-body>
@@ -16,10 +16,10 @@
     <nb-card-body>
       <form (ngSubmit)="addCourse()" #form="ngForm" aria-labelledby="title">
       <div class="form-control-group">
-        <label class="label" for="input-name">Name:</label>
+        <label class="label" for="input-name">Course Name:</label>
         <input nbInput
                fullWidth
-               [(ngModel)]="newcourse.name"
+               [(ngModel)]="newcourse.display_name"
                #name="ngModel"
                name="name"
                id="input-name"
@@ -28,34 +28,56 @@
       </div>
         <div class="form-control-group">
           <label class="label" for="input-class-level">Class:</label>
-          <select class="form-control" id="input-class-level" required fullWidth [(ngModel)]="newsection.section_class" name="Studentclass">
+          <select class="form-control" id="input-class-level" required fullWidth [(ngModel)]="newcourse.course_class" name="Studentclass">
             <option *ngFor="let class of available_classes" [value]="class.id">{{class.display_name}}</option>
           </select>
-          {{newsection?.section_class}}
+          {{newcourse?.course_class}}
         </div>
         <div class="form-control-group">
-          <label class="label" for="input-section-name">Section Name:</label>
-          <input nbInput
-                 fullWidth
-                 [(ngModel)]="newsection.section_name"
-                 #name="ngModel"
-                 name="sectionname"
-                 id="input-section-name"
-                 placeholder="Section Name"
-                 autofocus>
+          <label class="label" for="input-section-level">Section:</label>
+          <select class="form-control" id="input-section-level" required fullWidth [(ngModel)]="newcourse.course_section" name="Studentclass">
+            <option *ngFor="let section of available_sections" [value]="section.id">{{section.section_name}}</option>
+          </select>
+          {{newcourse?.course_section}}
         </div>
         <div class="form-control-group">
-          <label class="label" for="input-section-description">Section Description:</label>
+          <label class="label" for="input-course-year">Year:</label>
           <input nbInput
                  fullWidth
-                 [(ngModel)]="newsection.description"
+                 [(ngModel)]="newcourse.year"
                  #name="ngModel"
-                 name="sectiondescription"
-                 id="input-section-description"
-                 placeholder="Section Description"
+                 name="courseyear"
+                 id="input-course-year"
+                 placeholder="Course Year"
                  autofocus>
         </div>
 
+        <div class="form-control-group">
+          <label class="label" for="input-course-description">Course Description:</label>
+          <input nbInput
+                 fullWidth
+                 [(ngModel)]="newcourse.description"
+                 #name="ngModel"
+                 name="coursedescription"
+                 id="input-course-description"
+                 placeholder="Course Description"
+                 autofocus>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-class-level">Course Status:</label>
+          <select class="form-control" id="input-status-level" required fullWidth [(ngModel)]="newcourse.course_status" name="Course Status">
+            <option [value]="'op'">Open</option>
+            <option [value]="'cl'">Closed</option>
+            <option [value]="'ar'">Archived</option>
+          </select>
+        </div>
+
+        <div class="form-control-group">
+          <label class="label" for="input-template">Course Template:</label>
+          <select class="form-control" id="input-template" required fullWidth [(ngModel)]="newcourse.source_key" name="Source Key">
+            <option *ngFor="let template of available_templates" [value]="template.id">{{template.name}}</option>
+          </select>
+        </div>
 
         <button nbButton
                 fullWidth
@@ -63,8 +85,52 @@
           Add Course
         </button>
       </form>
-
-
-
     </nb-card-body>
   </nb-card>
+
+  <nb-card *ngIf="editcoursetab">
+        <nb-card-body>
+          Teachers:
+          <ng2-smart-table [settings]="teachersettings" [source]="teachersource"></ng2-smart-table>
+        Add New Teacher to the Course
+      <form (ngSubmit)="addTeacher()" #form="ngForm" aria-labelledby="title">
+
+        <div class="form-control-group">
+          <label class="label" for="input-teacher">Available Teachers:</label>
+          <select class="form-control" id="input-teacher" required fullWidth [(ngModel)]="newteacher.user_id" name="Teacher">
+            <option *ngFor="let teacher of available_teachers" [value]="teacher.id">{{teacher.first_name + ' '+ teacher.last_name}}</option>
+          </select>
+        </div>
+
+        <button nbButton
+                fullWidth
+                status="success">
+          Add Teacher to Course
+        </button>
+      </form>
+          Students:
+          <ng2-smart-table [settings]="studentsettings" [source]="studentsource"></ng2-smart-table>
+          Import Students from a section:
+          <form (ngSubmit)="addstudentsfromsection()" #form="ngForm" aria-labelledby="title">
+
+            <div class="form-control-group">
+              <label class="label" for="input-section">Available Sections:</label>
+              <select class="form-control" id="input-section" required fullWidth [(ngModel)]="newsection" name="Teacher">
+                <option *ngFor="let section of available_sections" [value]="section.id">{{section.section_name}}</option>
+              </select>
+            </div>
+
+            <button nbButton
+                    fullWidth
+                    status="success">
+              Add Section students to Course
+            </button>
+          </form>
+
+
+        </nb-card-body>
+  </nb-card>
+
+
+
+

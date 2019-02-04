@@ -41,5 +41,14 @@ export class StudentService {
     const body: string = JSON.stringify(profile);
     return this.http.put(LMS + '/youngspheresite/api/student/'+profile.id+'/', body, httpOptions);
   }
+  bulkuserregistration(data) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':'JWT '+ this.token }),
+
+    };
+
+    const body: string = JSON.stringify(data);
+    return this.http.post(LMS + '/youngspheresite/api/bulk_enroll_student/', body, httpOptions);
+  }
 
 }
