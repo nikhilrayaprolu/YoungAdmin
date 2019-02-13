@@ -25,8 +25,8 @@ export class ClassesComponent {
   source: LocalDataSource;
   class_levels = ['0','1','2']
   school: any;
-  private token: string;
-  private username: string;
+  token: string;
+  username: string;
   addNewClass: boolean = false;
   newclass: any = {class_level: '0'};
   constructor(private classservice: ClassService, private authservice: NbAuthService, private profileservice: ProfileService) {

@@ -42,8 +42,8 @@ export class TeachersComponent {
   source: LocalDataSource;
 
   school: any;
-  private token: string;
-  private username: string;
+  token: string;
+  username: string;
   addNewTeacher: boolean = false;
   newteacher: any = {};
   constructor(private teacherservice: TeacherService, private authservice: NbAuthService, private profileservice: ProfileService) {

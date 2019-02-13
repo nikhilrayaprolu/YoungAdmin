@@ -7,7 +7,7 @@ import {NbAuthService} from "@nebular/auth";
   providedIn: 'root'
 })
 export class TeacherService {
-  private token: string;
+  token: string;
 
   constructor(private http: HttpClient, private authService: NbAuthService) {
     this.authService.getToken()

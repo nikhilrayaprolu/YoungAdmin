@@ -49,8 +49,8 @@ export class StudentsComponent {
   availablesections = [];
   availablecourses = [];
   school: any;
-  private token: string;
-  private username: string;
+  token: string;
+  username: string;
   addNewStudent: boolean = false;
   newstudent: any = {};
   presenteditstudent: string;

@@ -27,8 +27,8 @@ export class SectionsComponent {
   available_classes = [];
   source: LocalDataSource;
   school: any;
-  private token: string;
-  private username: string;
+  token: string;
+  username: string;
   addNewSection: boolean = false;
   newsection: any = {};
   constructor(private sectionservice: SectionService, private authservice: NbAuthService,

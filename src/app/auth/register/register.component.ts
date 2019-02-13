@@ -10,10 +10,10 @@ import {NbStepperComponent} from "@nebular/theme";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent extends NbRegisterComponent {
-  private user_id: number;
-  private site = {};
-  private user_email: string;
-  private user_token: string;
+  user_id: number;
+  site: any;
+  user_email: string;
+  user_token: string;
   constructor(protected servicedummy: RegisterService,
               protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},

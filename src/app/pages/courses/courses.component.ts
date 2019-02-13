@@ -111,16 +111,16 @@ export class CoursesComponent {
   studentsource: LocalDataSource;
   newsection: any;
   school: any;
-  private available_sections:any = [];
-  private available_classes:any = [];
-  private available_teachers:any = []
-  private available_templates = [{
+  available_sections:any = [];
+  available_classes:any = [];
+  available_teachers:any = []
+  available_templates = [{
   id: 'course-v1:nps+math+3',
     name: 'Math 1'
   }
   ];
-  private token: string;
-  private username: string;
+  token: string;
+  username: string;
   addNewCourse: boolean = false;
   editcoursetab: boolean = false;
   presenteditcourse: string;
