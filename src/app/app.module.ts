@@ -16,6 +16,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NbAuthJWTInterceptor, NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
 import {NbStepperModule} from "@nebular/theme";
+import {server} from "./config";
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +40,7 @@ import {NbStepperModule} from "@nebular/theme";
 
             key: 'access_token', // this parameter tells where to look for the token
           },
-          baseEndpoint: 'http://localhost:8000',
+          baseEndpoint: server,
           login: {
             // ...
             endpoint: '/api/auth/login',
