@@ -3,7 +3,7 @@ import {NbAuthService} from "@nebular/auth";
 import {ClassService} from "../../services/class.service";
 import {ProfileService} from "../../services/profile.service";
 import {LocalDataSource} from "ng2-smart-table";
-
+import {class_levels} from "../../config";
 @Component({
   selector: 'ngx-profile',
   templateUrl: './classes.component.html',
@@ -23,7 +23,7 @@ export class ClassesComponent {
     }
   };
   source: LocalDataSource;
-  class_levels = ['0','1','2']
+  class_levels = class_levels;
   school: any;
   token: string;
   username: string;
@@ -50,6 +50,8 @@ export class ClassesComponent {
     this.newclass.organization = this.school.organization.id;
     this.classservice.saveclass(this.newclass).subscribe(result => {
       console.log("added new class");
+      this.addNewClass = !(this.addNewClass);
+      this.listOfClasses();
     });
   }
 

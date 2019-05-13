@@ -24,6 +24,14 @@ export class SectionService {
     };
     return this.http.get(LMS + '/youngspheresite/api/section/' + organization + '/', httpOptions);
   }
+
+  getsectionsbyclass(search_class) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':'JWT '+ this.token }),
+    };
+    return this.http.get(LMS + '/youngspheresite/api/sectionbyclass/' + search_class + '/', httpOptions);
+  }
+
   savesection(sectionprofile) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':'JWT '+ this.token }),

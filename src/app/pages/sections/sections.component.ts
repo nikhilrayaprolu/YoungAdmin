@@ -13,7 +13,10 @@ import {ClassService} from "../../services/class.service";
 export class SectionsComponent {
   settings = {
     columns: {
-      section_class: {
+      id: {
+        title: 'Id'
+      },
+      section_class_level: {
         title: 'Class'
       },
       section_name: {
@@ -35,7 +38,6 @@ export class SectionsComponent {
               private profileservice: ProfileService, private  classservice: ClassService) {
     this.authservice.getToken()
       .subscribe((token) => {
-
         this.token = token.getValue()
         this.username = token.getPayload().preferred_username
         this.profileservice.getschool(this.username).subscribe(result => {
@@ -54,6 +56,8 @@ export class SectionsComponent {
     this.newsection.organization = this.school.organization.id;
     this.sectionservice.savesection(this.newsection).subscribe(result => {
       console.log("added new section");
+      this.addNewSection = !(this.addNewSection)
+      this.listOfSections();
     });
   }
 

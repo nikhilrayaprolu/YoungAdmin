@@ -4,6 +4,7 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import {Router} from "@angular/router";
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -15,13 +16,12 @@ export class HeaderComponent implements OnInit {
 
   user: any = {};
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
-
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
               private analyticsService: AnalyticsService,
-              private authService: NbAuthService
+              private authService: NbAuthService,
+              private router: Router
               ) {
     this.authService.onTokenChange()
       .subscribe((token) => {
@@ -33,7 +33,10 @@ export class HeaderComponent implements OnInit {
 
       });
   }
-
+  logout() {
+    localStorage.removeItem('auth_app_token');
+    this.router.navigateByUrl('/auth/login');
+  }
   ngOnInit() {
     // this.userService.getUsers()
     //   .subscribe((users: any) => this.user = users.nick);

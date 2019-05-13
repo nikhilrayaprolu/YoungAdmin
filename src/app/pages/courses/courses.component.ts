@@ -6,6 +6,7 @@ import {CourseService} from "../../services/course.service";
 import {ClassService} from "../../services/class.service";
 import {SectionService} from "../../services/section.service";
 import {TeacherService} from "../../services/teacher.service";
+import {available_templates} from "../../config";
 
 @Component({
   selector: 'ngx-profile',
@@ -114,18 +115,16 @@ export class CoursesComponent {
   available_sections:any = [];
   available_classes:any = [];
   available_teachers:any = []
-  available_templates = [{
-  id: 'course-v1:nps+math+3',
-    name: 'Math 1'
-  }
-  ];
+  available_templates = available_templates;
   token: string;
   username: string;
   addNewCourse: boolean = false;
   editcoursetab: boolean = false;
   presenteditcourse: string;
   newcourse: any = {};
-  newteacher: any = {};
+  newteacher: any = {
+    user_id: null,
+  };
   constructor(private courseservice: CourseService, private authservice: NbAuthService, private profileservice: ProfileService,
               private classservice: ClassService, private sectionservice: SectionService, private teacherservice: TeacherService) {
     this.authservice.getToken()
@@ -137,7 +136,7 @@ export class CoursesComponent {
           this.school = result;
           this.listOfCourses();
           this.listOfClasses();
-          this.listOfSections();
+          //this.listOfSections();
           this.listOfTeachers();
 
         })
@@ -157,7 +156,9 @@ export class CoursesComponent {
 
   }
   addTeacher() {
+    console.log(this.newteacher)
     this.newteacher.destination_course_key = this.presenteditcourse;
+    console.log(this.newteacher)
     this.courseservice.addTeacherToCourse(this.newteacher).subscribe( (result: any) => {
       console.log(result);
     })
@@ -173,6 +174,12 @@ export class CoursesComponent {
       this.available_sections = result;
     });
   }
+  classselected() {
+    this.available_sections = [];
+    this.sectionservice.getsectionsbyclass(this.newcourse.course_class).subscribe((result: any) => {
+      this.available_sections = result;
+    })
+  }
   userRowSelect(data) {
     console.log(data)
   }
@@ -187,6 +194,10 @@ export class CoursesComponent {
     this.newcourse.org = this.school.organization.short_name;
     this.newcourse.organization = this.school.organization.id;
     this.newcourse.run = this.newcourse.course_section;
+    if(this.newcourse['source_key'] == 'blank'){
+      delete this.newcourse['source_key'];
+    }
+
     this.courseservice.savecourse(this.newcourse).subscribe(result => {
       console.log("added new course");
     });

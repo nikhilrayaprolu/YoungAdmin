@@ -21,7 +21,6 @@ export class ProfileService {
   save(profile) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':'JWT '+ this.token }),
-
     };
     console.log(this.token)
     const body: string = JSON.stringify(profile);

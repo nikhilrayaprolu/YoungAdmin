@@ -119,21 +119,27 @@ export class StudentsComponent {
     });
   }
   addBulkUsers() {
-    this.studentservice.bulkuserregistration(this.bulkusers).subscribe((result: any) => {
+    this.studentservice.bulkuserregistration({'users': this.bulkusers, 'school': this.school.school.id}).subscribe((result: any) => {
       console.log(result);
     })
   }
   public csvJSON(csv) {
-    var lines = csv.split("\n");
+    var lines = csv.split("\n").map(function(item) {
+      return item.trim();
+    });
 
     var result = [];
 
-    var headers = lines[0].split(",");
+    var headers = lines[0].split(",").map(function(item) {
+      return item.trim();
+    });
 
     for (var i = 1; i < lines.length; i++) {
 
       var obj = {};
-      var currentline = lines[i].split(",");
+      var currentline = lines[i].split(",").map(function(item) {
+        return item.trim();
+      });
 
       for (var j = 0; j < headers.length; j++) {
         obj[headers[j]] = currentline[j];

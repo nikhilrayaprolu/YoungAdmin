@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NbAuthJWTInterceptor, NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
 import {NbStepperModule} from "@nebular/theme";
 import {server} from "./config";
+import {AuthGuard} from "./auth-guard.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -64,6 +65,7 @@ import {server} from "./config";
   bootstrap: [AppComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
+    AuthGuard,
   ],
 })
 export class AppModule {

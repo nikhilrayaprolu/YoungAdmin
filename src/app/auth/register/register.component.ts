@@ -11,7 +11,10 @@ import {NbStepperComponent} from "@nebular/theme";
 })
 export class RegisterComponent extends NbRegisterComponent {
   user_id: number;
-  site: any;
+  site: any = {
+    name : null,
+    subdomain : null
+  };
   user_email: string;
   user_token: string;
   constructor(protected servicedummy: RegisterService,
@@ -35,6 +38,9 @@ export class RegisterComponent extends NbRegisterComponent {
   register_site() {
     this.servicedummy.register_site(this.user_email, this.site).subscribe(result => {
       console.log(result);
+      if(result.organization) {
+        this.router.navigate(['auth/login']);
+      }
     });
   }
 

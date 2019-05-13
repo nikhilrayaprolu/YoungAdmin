@@ -48,7 +48,7 @@ export class StudentService {
     };
 
     const body: string = JSON.stringify(data);
-    return this.http.post(LMS + '/youngspheresite/api/bulk_enroll_student/', body, httpOptions);
+    return this.http.post(LMS + '/youngspheresite/api/bulk_add_student/', body, httpOptions);
   }
 
 }

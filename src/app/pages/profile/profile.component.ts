@@ -8,6 +8,7 @@ import {NbAuthService} from "@nebular/auth";
 })
 export class ProfileComponent {
   profile: any = {};
+  new = false;
   submitted: boolean;
   constructor(private profileservice: ProfileService, private authService: NbAuthService) {
     this.authService.getToken()
@@ -19,27 +20,25 @@ export class ProfileComponent {
             if(result.school != null) {
               this.profile = result.school;
             }
+            else {
+              this.new = true
+            }
             this.profile.organization = result.organization.name;
-
-
           })
         }
-
       });
-
   }
 
   updateprofile() {
-    if( this.profile.id ){
+    if (!this.new) {
       this.profileservice.update(this.profile).subscribe(result => {
         console.log(result);
       });
     } else {
       this.profileservice.save(this.profile).subscribe(result => {
-        console.log(result);
+        this.profile = result;
       });
     }
-
   }
 
 

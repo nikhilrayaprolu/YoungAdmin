@@ -54,6 +54,7 @@ export class TeachersComponent {
         this.username = token.getPayload().preferred_username
         this.profileservice.getschool(this.username).subscribe(result => {
           this.school = result;
+          console.log(result);
           this.listOfTeachers()
 
         })
